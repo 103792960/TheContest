@@ -7,7 +7,7 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "au.edu.swin.sdmd.myapp"
+        applicationId "au.edu.swin.sdmd.thecontest"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1

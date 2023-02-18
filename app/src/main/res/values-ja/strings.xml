@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ザ・コンテスト</string>
+    <string name="_0">0</string>
+    <string name="button">ボタン</string>
+    <string name="score">スコア</string>
+    <string name="steal">スティール</string>
+    <string name="reset">リセット</string>
+</resources>

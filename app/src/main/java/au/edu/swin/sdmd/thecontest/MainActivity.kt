@@ -50,7 +50,11 @@ class MainActivity : AppCompatActivity() {
             steal.setEnabled(count > 0);
         }
 
-        var mediaPlayer = MediaPlayer.create(this, R.raw.success_1_6297); //audio
+        var mediaPlayer = MediaPlayer.create(this, R.raw.success_1_6297);
+
+        if (count == 15) {
+            mediaPlayer.start()
+        }
 
         score.setOnClickListener {
             count++
@@ -59,7 +63,6 @@ class MainActivity : AppCompatActivity() {
 
             check(count, result)
             checkBounds()
-            mediaPlayer.start()
         }
 
         steal.setOnClickListener {
@@ -69,7 +72,6 @@ class MainActivity : AppCompatActivity() {
 
             check(count, result)
             checkBounds();
-            mediaPlayer.start()
         }
 
         reset.setOnClickListener {
@@ -78,7 +80,6 @@ class MainActivity : AppCompatActivity() {
             result.text = count.toString()
             sharePref.edit().putInt("num", count).apply()
             check(count, result)
-            mediaPlayer.start()
         }
     }
 

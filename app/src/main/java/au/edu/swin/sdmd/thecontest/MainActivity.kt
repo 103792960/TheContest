@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Log.i("TAG", "onCreate")
 
-        var media = MediaPlayer.create(this, R.raw.success_1_6297)
+        var media = MediaPlayer.create(this, R.raw.success)
 
         val score = findViewById<Button>(R.id.btn_score);
         val steal = findViewById<Button>(R.id.btn_steal);

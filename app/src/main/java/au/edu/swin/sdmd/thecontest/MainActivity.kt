@@ -10,75 +10,55 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    override fun onStart() {
-        super.onStart()
-        Log.i("TAG", "onStart")
-    }
-
     var count = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
         Log.i("TAG", "onCreate")
+
+        var media = MediaPlayer.create(this, R.raw.success_1_6297)
 
         val score = findViewById<Button>(R.id.btn_score);
         val steal = findViewById<Button>(R.id.btn_steal);
         val reset = findViewById<Button>(R.id.btn_reset);
         val result = findViewById<TextView>(R.id.result);
 
-        val sharePref = getSharedPreferences("pref", MODE_PRIVATE);
-
-        count = sharePref.getInt("num", 0)
-
-        Log.i("TAG", "" + count);
-
-        result.setText(Integer.toString(count))
-
-        check(count, result)
-
-        if (count > 14) {
-
-            sharePref.edit().putInt("num", count).apply()
-            count = 0
+        if(savedInstanceState != null) {
+            count = savedInstanceState.getInt("MyInt")
+            result.text = count.toString()
+            check(count, result)
         }
 
         fun checkBounds() {
-            score.setEnabled(count < 15);
-            steal.setEnabled(count > 0);
-        }
-
-        var mediaPlayer = MediaPlayer.create(this, R.raw.success_1_6297);
-
-        if (count == 15) {
-            mediaPlayer.start()
+            score.setEnabled(count < 15)
+            steal.setEnabled(count > 0)
         }
 
         score.setOnClickListener {
             count++
             result.text = count.toString()
-            sharePref.edit().putInt("num", count).apply()
 
             check(count, result)
             checkBounds()
+
+            if (count == 15) {
+                media.start()
+            }
         }
 
         steal.setOnClickListener {
             count--
             result.text = count.toString()
-            sharePref.edit().putInt("num", count).apply()
 
             check(count, result)
-            checkBounds();
+            checkBounds()
         }
 
         reset.setOnClickListener {
             count = 0
 
             result.text = count.toString()
-            sharePref.edit().putInt("num", count).apply()
             check(count, result)
         }
     }
